@@ -36,7 +36,7 @@ Country.prototype.getTime = function(){ //Får fram rätt tid
 
     return `${hours}:${minutes}`;
 }
-Country.prototype.presentInfo = function(){
+Country.prototype.presentInfo = function(){ //Presenterar all information i HTML.
     const section = document.querySelectorAll('section');
     const img = section[this.o].children[0];
     const h1 = section[this.o].children[1];
