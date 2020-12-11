@@ -53,7 +53,7 @@ fetch(url).then(
             return response.json();
         }
         else {
-            throw `${response.status}: Ett fel uppstod.`;
+            throw `Ett fel uppstod. Kod: ${response.status}.`;
         }
     }
 ).then(
@@ -74,6 +74,6 @@ fetch(url).then(
     }
 ).catch(
     error => {
-        console.log(error);
+        alert(error);
     }
 );
