@@ -12,16 +12,14 @@ function Country(_name, _flag, _timezone, _order) {
 Country.prototype.getTime = function(){ //Får fram rätt tid
     let date = new Date();
 
-    console.log(this.timezone);
-
     let tzHour;
     /* Adderar/subtraherar timmar enligt UTC */
     if (this.timezone == "UTC") { //Ifall tiden är UTC+0;
         tzHour = 0;
     } else {
-        tzHour = parseInt(this.timezone.substr(3, 6)); //Tar så mycket som skilljer sig från neutral UTC.
+        tzHour = parseInt(this.timezone.substr(3, 6)); //Hämtar ut UTC-differensen.
     }
-    console.log(tzHour)
+    /* Beräknar tiden */
     let hours = date.getUTCHours() + tzHour;
     let minutes = date.getMinutes();
 
@@ -51,7 +49,6 @@ Country.prototype.presentInfo = function(){
 
 fetch(url).then(
     response => {
-        console.log(response);
         if (response.status >= 200 && response.status < 300) {
             return response.json();
         }
@@ -61,8 +58,6 @@ fetch(url).then(
     }
 ).then(
     data => {
-        console.log(data)
-
         let countries = [];
 
         for (let i = 0; i < 3; i++){
@@ -71,7 +66,6 @@ fetch(url).then(
             countries.push(
                 new Country(data[r].name, data[r].flag, data[r].timezones[0], i)
             )
-            console.log(countries[i]);
         }
 
         for (let country of countries){
